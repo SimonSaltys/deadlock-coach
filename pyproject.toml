@@ -20,6 +20,9 @@ deadlock-coach = "deadlock_coach:main"
 requires = ["uv_build>=0.13.6,<0.14.0"]
 build-backend = "uv_build"
 
+[tool.pytest.ini_options]
+markers = ["network: hits the live deadlock-api lake (deselect with -m 'not network')"]
+
 [dependency-groups]
 dev = [
     "pytest>=9.2.0",
