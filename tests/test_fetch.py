@@ -11,6 +11,10 @@ def load_record():
     meta = json.loads(FIXTURE.read_text())
     return player_record(meta, ACCOUNT_ID)
 
+def test_names_resolved():
+    rec = load_record()
+    assert rec["hero_name"] == "Drifter"
+    assert not any(i["name"].startswith("unknown_") for i in rec["items"] + rec["abilities"])
 
 def test_basic_fields():
     rec = load_record()

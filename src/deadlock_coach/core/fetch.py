@@ -1,4 +1,5 @@
 from deadlock_coach.core.api import get_match_metadata
+from deadlock_coach.core.assets import name_of
 
 MARKS_S = [300, 600, 900, 1200, 1500, 1800]  # 5..30 min
 
@@ -65,9 +66,11 @@ def _split_purchases(items: list[dict]) -> tuple[list[dict], list[dict]]:
             "upgrade_id": i["upgrade_id"],
         }
         if i["upgrade_id"] == SHOP_ITEM_UPGRADE_ID:
+            entry["name"] = name_of("items", i["item_id"])
             entry["sold_t"] = i["sold_time_s"] or None
             shop.append(entry)
         else:
+            entry["name"] = name_of("items", i["item_id"])
             abilities.append(entry)
     return shop, abilities
 
@@ -97,6 +100,7 @@ def player_record(meta: dict, account_id: int) -> dict:
         "match_id": info["match_id"],
         "account_id": account_id,
         "hero_id": me["hero_id"],
+        "hero_name": name_of("heroes", me["hero_id"]),
         "team": me["team"],
         "won": me["team"] == info["winning_team"],
         "duration_s": info["duration_s"],
