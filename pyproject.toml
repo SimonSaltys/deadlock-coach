@@ -1,0 +1,27 @@
+[project]
+name = "deadlock-coach"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Simon Saltikov", email = "87448440+SimonSaltys@users.noreply.github.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "duckdb>=2.0.0",
+    "polars>=2.1.0",
+    "requests>=2.34.2",
+]
+
+[project.scripts]
+deadlock-coach = "deadlock_coach:main"
+
+[build-system]
+requires = ["uv_build>=0.13.6,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+    "ruff>=0.17.3",
+]
